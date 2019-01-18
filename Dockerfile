@@ -15,6 +15,8 @@ mv chromedriver /usr/bin/
 #######################################################################################################################
 FROM ruby:2.5.3
 
+RUN mkdir -p /var/log/supervisor
+
 # install chrome
 WORKDIR /tmp
 RUN wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add - && \
@@ -27,7 +29,7 @@ COPY --from=node /usr/local/bin/node /usr/local/bin/
 
 ENV LANG ja_JP.UTF-8
 RUN apt-get update &&\
-    apt-get install -y mysql-client imagemagick jpegoptim optipng graphviz vim &&\
+    apt-get install -y mysql-client imagemagick jpegoptim optipng graphviz fonts-ipafont cron supervisor vim --no-install-recommends &&\
     rm -rf /var/lib/apt/lists/*
 
 RUN mkdir -p /usr/src/app
