@@ -30,7 +30,7 @@ COPY --from=node /usr/local/bin/node /usr/local/bin/
 ENV RUBYOPT -EUTF-8
 ENV LANG ja_JP.UTF-8
 RUN apt-get update &&\
-    apt-get install -y mysql-client imagemagick jpegoptim optipng graphviz fonts-ipafont cron supervisor vim --no-install-recommends &&\
+    apt-get install -y default-mysql-client imagemagick jpegoptim optipng graphviz fonts-ipafont cron supervisor vim --no-install-recommends &&\
     rm -rf /var/lib/apt/lists/*
 
 RUN mkdir -p /usr/src/app
