@@ -13,7 +13,7 @@ RUN wget -qnv https://chromedriver.storage.googleapis.com/LATEST_RELEASE -O - | 
 mv chromedriver /usr/bin/
 
 #######################################################################################################################
-FROM ruby:2.5.3
+FROM ruby:2.5.8
 
 RUN mkdir -p /var/log/supervisor
 
