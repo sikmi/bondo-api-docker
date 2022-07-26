@@ -37,4 +37,7 @@ RUN mkdir -p /usr/src/app
 WORKDIR /usr/src/app
 
 RUN gem install bundler
-RUN curl -0 -L http://npmjs.org/install.sh | sh
+RUN curl -0 -L https://registry.npmjs.org/npm/-/npm-6.4.1.tgz | tar zxvf - && cd package && ./configure && make && make install
+
+WORKDIR /usr/src/app
+RUN rm -rf ./package
