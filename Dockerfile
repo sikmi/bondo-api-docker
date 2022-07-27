@@ -36,8 +36,10 @@ RUN apt-get update &&\
 RUN mkdir -p /usr/src/app
 WORKDIR /usr/src/app
 
-RUN gem install bundler
-RUN curl -0 -L https://registry.npmjs.org/npm/-/npm-6.4.1.tgz | tar zxvf - && cd package && ./configure && make && make install
+# install bundler
+RUN gem install bundler:1.17.3
 
+# install npm
+RUN curl -0 -L https://registry.npmjs.org/npm/-/npm-6.4.1.tgz | tar zxvf - && cd package && ./configure && make && make install
 WORKDIR /usr/src/app
 RUN rm -rf ./package
