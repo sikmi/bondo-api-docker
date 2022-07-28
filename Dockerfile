@@ -37,7 +37,7 @@ RUN mkdir -p /usr/src/app
 WORKDIR /usr/src/app
 
 # install bundler
-RUN gem install bundler:1.17.3
+RUN gem install bundler:2.3.19
 
 # install npm
 RUN curl -0 -L https://registry.npmjs.org/npm/-/npm-6.4.1.tgz | tar zxvf - && cd package && ./configure && make && make install
