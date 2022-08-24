@@ -40,6 +40,4 @@ WORKDIR /usr/src/app
 RUN gem install bundler:2.3.19
 
 # install npm
-RUN curl -0 -L https://registry.npmjs.org/npm/-/npm-6.4.1.tgz | tar zxvf - && cd package && ./configure && make && make install
-WORKDIR /usr/src/app
-RUN rm -rf ./package
+RUN curl -0 -L https://npmjs.org/install.sh | sh
