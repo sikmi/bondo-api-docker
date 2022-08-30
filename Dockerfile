@@ -24,8 +24,13 @@ RUN wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key
   apt-get update && \
   apt-get install -y google-chrome-stable
 
+# install node, npm, chromedriver from multistage
 COPY --from=node /usr/bin/chromedriver /usr/bin/
 COPY --from=node /usr/local/bin/node /usr/local/bin/
+COPY --from=node /usr/local/lib/node_modules /usr/local/lib/node_modules
+RUN ln -s /usr/local/bin/node /usr/local/bin/nodejs \
+    && ln -s /usr/local/lib/node_modules/npm/bin/npm-cli.js /usr/local/bin/npm \
+    && ln -s /usr/local/lib/node_modules/npm/bin/npx-cli.js /usr/local/bin/npx
 
 ENV RUBYOPT -EUTF-8
 ENV LANG ja_JP.UTF-8
@@ -38,8 +43,3 @@ WORKDIR /usr/src/app
 
 # install bundler
 RUN gem install bundler:2.3.19
-
-# install npm
-RUN curl -0 -L https://registry.npmjs.org/npm/-/npm-6.4.1.tgz | tar zxvf - && cd package && ./configure && make && make install
-WORKDIR /usr/src/app
-RUN rm -rf ./package
