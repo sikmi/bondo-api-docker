@@ -13,7 +13,7 @@ RUN wget -qnv https://chromedriver.storage.googleapis.com/LATEST_RELEASE -O - | 
 mv chromedriver /usr/bin/
 
 #######################################################################################################################
-FROM ruby:2.7.6
+FROM ruby:3.0.5
 
 RUN mkdir -p /var/log/supervisor
 
@@ -42,4 +42,4 @@ RUN mkdir -p /usr/src/app
 WORKDIR /usr/src/app
 
 # install bundler
-RUN gem install bundler:2.3.19
+RUN gem install bundler:2.4.7
